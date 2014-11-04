@@ -5,7 +5,7 @@
 # add filename (time and date) as first column of data.
 # example file name: 2014-11-02 21:15:01+02:00.csv
 #
-# ./raw2csv.sh >/tmp/traffic.log
+# ./raw2csv.sh >../data/csv/traffic.csv
 
 for i in $(find . -name "*.csv" |sed 's/ /_/; s/\.\///'); do
   cat "$(echo $i |sed 's/_/ /')" \
