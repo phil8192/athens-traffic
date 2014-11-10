@@ -128,6 +128,9 @@ load.data <- function() {
     traffic.data <- data.frame(traffic.data[, c("timestamp", "speed")], segment.id=road.segment.ids) 
     traffic.data <<- traffic.data[order(traffic.data$segment.id, traffic.data$timestamp), ]
 
+    # save road segments to csv for external processing
+    write.csv(road.segments, "data/csv/road-segments.csv", quote=F)
+
     # save image
     save(file="data/bin/traffic.bin", list=c("traffic.data", "road.segments"))
   }
