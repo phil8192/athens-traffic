@@ -1,9 +1,11 @@
+options(width=as.integer(Sys.getenv("COLUMNS")))
+
 # load traffic data from image.
 # else do data pre-processing and save image.
 load.data <- function() {
   # load traffic data from prevously prepared image.
   if(file.exists("data/bin/traffic.bin"))
-    load(file=paste0("data/bin/traffic.bin"), verbose=T)
+    load(file=paste0("data/bin/traffic.bin"), envir=parent.frame(), verbose=T)
   else {
     # load the traffic.data from csv
     print("loading data from csv. this will take some time...")
@@ -112,9 +114,22 @@ load.data <- function() {
         stop()
       )
     })
+
+    # extract the unique road segments
+    print("extracting segments...")
+    road.segments <<- unique(traffic.data[, c("route", "from", "to", "direction", "length", "lat1", "lng1", "lat2", "lng2")])
+    rownames(road.segments) <- 1:nrow(road.segments)
+    print(paste("got", nrow(road.segments), "road segments"))
+
+    # == normalise a little ==
+    # hacky unique identifier: length of the segment
+    stopifnot(all(!duplicated(road.segments$length)))
+    road.segment.ids <- match(traffic.data$length, road.segments$length)
+    traffic.data <- data.frame(traffic.data[, c("timestamp", "speed")], segment.id=road.segment.ids) 
+    traffic.data <<- traffic.data[order(traffic.data$segment.id, traffic.data$timestamp), ]
+
     # save image
-    save(file="data/bin/traffic.bin", list="traffic.data")
+    save(file="data/bin/traffic.bin", list=c("traffic.data", "road.segments"))
   }
-  traffic.data
 }
 
