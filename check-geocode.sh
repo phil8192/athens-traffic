@@ -3,6 +3,7 @@
 # them into a google map to check they look ok.
 #
 # ./check-geocode.sh >/tmp/lala.html
+# note: best use geojson output from to-geojson.sh ...
 
 cat << EOF
 
