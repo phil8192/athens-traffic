@@ -126,7 +126,23 @@ load.data <- function() {
     stopifnot(all(!duplicated(road.segments$length)))
     road.segment.ids <- match(traffic.data$length, road.segments$length)
     traffic.data <- data.frame(traffic.data[, c("timestamp", "speed")], segment.id=road.segment.ids) 
-    traffic.data <<- traffic.data[order(traffic.data$segment.id, traffic.data$timestamp), ]
+    traffic.data <- traffic.data[order(traffic.data$segment.id, traffic.data$timestamp), ]
+
+    # collapse data into a matrix. first column = timestamp.
+    # columns 2:46 = individual sensors. each observation is aligned with time period.
+    timestamps <- seq(min(traffic.data$timestamp), max(traffic.data$timestamp), by="5 min")
+    timestamps <- as.numeric(timestamps)
+
+    ts.aligned.speeds <- by(traffic.data, traffic.data$segment.id, function(v) {
+      v[match(timestamps, as.numeric(v$timestamp)), ]$speed
+    })
+
+    ts.aligned.speeds <- lapply(ts.aligned.speeds, unlist)
+    timestamps <- as.POSIXct(timestamps, tz="UTC", origin="1970-01-01")
+
+    traffic.data <<- data.frame(timestamps, ts.aligned.speeds)
+    colnames(traffic.data) <<- c("timestamp", paste0("s", 1:nrow(road.segments)))
+    
 
     # save road segments to csv for external processing
     write.csv(road.segments, "data/csv/road-segments.csv", quote=F)
