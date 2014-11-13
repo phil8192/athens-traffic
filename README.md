@@ -8,15 +8,16 @@ http://entropy.disconnect.me.uk/2011/05/taxi-calculation-reloaded.html
 sensor data:
 https://github.com/phil8192/athens-traffic/blob/master/data/segments.geojson
 
-average daily speeds:
+average daily speeds from all 45 sensors:
+!["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/grand_average.png)
 
+average daily speeds for each sensor:
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Alexandras-Patision-Katehaki_inside_Alexandras-Katehaki.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Alexandras-Patision-Katehaki_inside_Mesogeion-Katehaki.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Athenon-Geoponikh_School-Attiki_Odos_inside_Kifisou-North.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Athenon-Geoponikh_School-Dafni-Dafni.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Athenon-Thevon-Omonia-Centre.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Athenon-Thevon-Sef_junction_inside_Kifisou-Peiraia.png)
-!["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/grand_average.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Kifisias-Big_OTE-Hilton-Centre.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Kifisias-Big_OTE-Katehaki-Centre.png)
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Kifisias-Katehaki-Attiki_Odos-Kifisia.png)
