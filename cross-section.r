@@ -118,6 +118,14 @@ bin.speeds <- function(traffic.data) {
 weekday.bin.speeds <- bin.speeds(traffic.data[weekdays(traffic.data$timestamp) != "Saturday" & weekdays(traffic.data$timestamp) != "Sunday", ])
 saturday.bin.speeds <- bin.speeds(traffic.data[weekdays(traffic.data$timestamp) == "Saturday", ])
 sunday.bin.speeds <- bin.speeds(traffic.data[weekdays(traffic.data$timestamp) == "Sunday", ])
+}
 
+if(F){
+all <- unlist(traffic.data[, 2:46])
+all <- all[!is.na(all)]
+p <- ggplot(data=data.frame(speed=all), mapping=aes(x=speed)) + geom_bar(colour="#ff0000", binwidth=5) + theme.black()
+png("/tmp/all-hist.png", width=1146, height=400, res=120, bg="#000000")
+print(p)
+dev.off()
 }
 
