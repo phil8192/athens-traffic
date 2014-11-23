@@ -9,7 +9,7 @@ sensor data:
 https://github.com/phil8192/athens-traffic/blob/master/data/segments.geojson
 
 average daily speeds from all 45 sensors:
-!["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/grand_average.png)
+!["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/all-speeds.png)
 
 average daily speeds for each sensor:
 !["plot"](https://raw.githubusercontent.com/phil8192/athens-traffic/master/plots/Alexandras-Patision-Katehaki_inside_Alexandras-Katehaki.png)
